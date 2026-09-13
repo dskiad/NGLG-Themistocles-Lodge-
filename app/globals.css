@@ -71,6 +71,11 @@ img {display:block;max-width:100%}
 .medallion-inner {width:100%;height:100%;border-radius:50%;background:#f4efe0;overflow:hidden;border:3px double #a88847;display:flex;align-items:center;justify-content:center}
 .medallion-inner img {width:100%;height:100%;object-fit:cover;mix-blend-mode:multiply;flex-shrink:0}
 .hero-baseline {position:absolute;bottom:45px;left:70px;right:70px;display:flex;justify-content:space-between;text-transform:uppercase;letter-spacing:.3em;color:#bcaa86;font-size:.75rem}
+.marble-banner {position:relative;text-align:center;padding:44px 40px 40px;background:radial-gradient(ellipse at 50% 0%,#1e405c40,transparent 70%),#081627;border-bottom:1px solid #d8ba7830}
+.marble-banner img {width:min(360px,100%);margin-inline:auto;border:1px solid #d8ba7860;box-shadow:0 20px 55px #0007}
+.marble-caption {margin-top:18px;font-family:var(--serif);font-style:italic;font-size:.9375rem;color:#c9b98a}
+.past-section {position:relative}
+.registry-seal {position:absolute;top:-22px;right:14px;width:96px;height:auto;pointer-events:none;user-select:none;transform:rotate(-8deg);filter:drop-shadow(0 12px 20px #0009);z-index:1}
 .section-wrap {max-width:1140px;margin-inline:auto;padding-inline:45px}
 .officers-section {padding-block:38px 45px}
 .section-kicker {display:flex;align-items:center;gap:10px;color:var(--gold);font-size:.875rem;letter-spacing:.08em;margin-bottom:14px}
@@ -235,6 +240,9 @@ img {display:block;max-width:100%}
  .date-month>span {font-size:.875rem}
  .meeting-weekday {grid-column:2;grid-row:1;font-size:.875rem}
  .meeting-row h3 {grid-column:1 / -1;grid-row:2;font-size:1.2rem;padding-top:8px}
+ .marble-banner {padding:32px 20px 30px}
+ .marble-banner img {width:min(240px,100%)}
+ .registry-seal {width:64px;top:-14px;right:6px}
  .past-section {padding-block:42px 34px}
  .past-grid {grid-template-columns:1fr;gap:0;margin-top:20px}
  .past-person {padding-block:17px;gap:19px}

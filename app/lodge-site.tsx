@@ -55,6 +55,11 @@ export default function LodgeSite({initialContent}: {initialContent:LodgeContent
           <div className="hero-baseline" aria-hidden="true"><span>{content.lodgeName}</span><span>ΠΕΙΡΑΙΕΥΣ</span></div>
         </section>
 
+        <section className="marble-banner" aria-labelledby="marble-caption">
+          <img src="/images/marble-emblem.png" alt="Το έμβλημα της Στοάς Θεμιστοκλής σκαλισμένο σε μάρμαρο" width="1141" height="928" loading="lazy"/>
+          <p id="marble-caption" className="marble-caption">Το έμβλημα της Στοάς, αποτυπωμένο σε μάρμαρο</p>
+        </section>
+
         <section id="officers" className="officers-section section-wrap" aria-labelledby="officers-heading">
           <div className="section-kicker"><span className="little-diamond"/>{content.officersTitle}</div>
           <h2 id="officers-heading" className="sr-only">{content.officersTitle}</h2>
@@ -70,6 +75,7 @@ export default function LodgeSite({initialContent}: {initialContent:LodgeContent
         </section>
 
         <section id="past-masters" className="past-section section-wrap" aria-labelledby="past-heading">
+          <img className="registry-seal" src="/images/wax-seal-nglg.png" alt="" aria-hidden="true" width="1024" height="1536"/>
           <div className="section-heading"><div><span className="section-kicker"><span className="little-diamond"/>{content.lodgeName} · {content.lodgeNumber}</span><h2 id="past-heading">{content.pastTitle}</h2></div><ShieldCheck size={33} strokeWidth={1}/></div>
           <div className="past-grid">{content.pastMasters.map((person,i)=><div className="past-person" key={person.id}><span aria-hidden="true">{String(i+1).padStart(2,"0")}</span><p>{fullName(person)}</p></div>)}</div>
           {!content.pastMasters.length&&<p className="empty-note">Δεν έχουν προστεθεί ονόματα στο μητρώο.</p>}
