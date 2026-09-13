@@ -31,9 +31,11 @@ export default function LodgeSite({initialContent}: {initialContent:LodgeContent
   return <>
     <a className="skip-link" href="#main">Μετάβαση στο περιεχόμενο</a>
     <div className="site-shell">
+      <div className="braided-rope braided-rope-left" aria-hidden="true"/>
+      <div className="braided-rope braided-rope-right" aria-hidden="true"/>
       <header className="grand-header">
         <a href="#main" className="grand-brand"><img src={content.grandEmblem} alt="Έμβλημα της Εθνικής Μεγάλης Στοάς της Ελλάδος" width="65" height="70"/><span>{content.grandTitle}</span></a>
-        <button className="editor-button" onClick={()=>setOpen(true)} disabled={!loaded && !error}><Pencil size={15}/><span>Επεξεργασία</span></button>
+        <button className="editor-button" aria-label="Επεξεργασία σελίδας" onClick={()=>setOpen(true)} disabled={!loaded && !error}><Pencil size={18}/><span>Επεξεργασία</span></button>
       </header>
       <nav className="main-nav" aria-label="Πλοήγηση σελίδας">
         <a href="#officers">Αξιωματικοί</a><span aria-hidden="true">·</span><a href="#meetings">Εργασίες</a><span aria-hidden="true">·</span><a href="#past-masters">Πρώην Σεβάσμιοι</a><a className="nav-application" href={content.applicationUrl} target="_blank" rel="noopener noreferrer">{content.applicationTitle}<ArrowUpRight size={15}/></a>
@@ -47,10 +49,9 @@ export default function LodgeSite({initialContent}: {initialContent:LodgeContent
             <div className="hero-intro"><span className="hairline"/>{content.lodgeType}<span className="hairline"/></div>
             <h1 id="lodge-name">{content.lodgeName}</h1>
             <div className="lodge-number">{content.lodgeNumber}</div>
-            <div className="ornament" aria-hidden="true"><span/>✧<span/></div>
-            <a className="hero-venue" href="#meetings"><MapPin size={16}/>{content.venue}</a>
           </div>
-          <div className="lodge-medallion"><div className="medallion-inner"><img src={content.lodgeEmblem} alt="Λογότυπο της Συμβολικής Στοάς Θεμιστοκλής υπ’ αριθμ. 96" width="250" height="205"/></div></div>
+          <div className="lodge-medallion"><div className="medallion-inner"><img src={content.lodgeEmblem} alt="Λογότυπο της Συμβολικής Στοάς Θεμιστοκλής υπ’ αριθμ. 96" width="300" height="300" decoding="async" fetchPriority="high"/></div></div>
+          <a className="hero-venue" href="#meetings"><MapPin size={17}/>{content.venue}</a>
           <div className="hero-baseline" aria-hidden="true"><span>{content.lodgeName}</span><span>ΠΕΙΡΑΙΕΥΣ</span></div>
         </section>
 
