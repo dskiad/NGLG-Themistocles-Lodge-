@@ -111,8 +111,11 @@ img {display:block;max-width:100%}
 .date-month {font-size:1rem;line-height:1.5;font-weight:700;min-width:0;overflow-wrap:anywhere}
 .date-month>span {display:block;font-size:.875rem;font-weight:400;color:#6a706f}
 .meeting-weekday {font-size:.875rem;color:#6b726f}
+.meeting-content {min-width:0}
 .meeting-row h3 {font-family:var(--serif);font-size:1.3rem;font-weight:400;line-height:1.5}
 .meeting-row.ceremony h3 {color:#735525}
+.meeting-image {width:88px;height:88px;object-fit:cover;border-radius:3px;border:1px solid #cbb17a40;margin-top:10px}
+.meeting-link {display:inline-flex;align-items:center;gap:6px;margin-top:10px;font-size:.875rem;color:var(--gold);text-decoration:underline;text-underline-offset:3px;min-height:44px}
 .meeting-index {font-size:.8125rem;color:#8f897f;text-align:right}
 .past-section {padding-block:65px 48px}
 .past-section h2 {color:var(--gold-light)}
@@ -241,7 +244,8 @@ img {display:block;max-width:100%}
  .date-month {font-size:.9375rem}
  .date-month>span {font-size:.875rem}
  .meeting-weekday {grid-column:2;grid-row:1;font-size:.875rem}
- .meeting-row h3 {grid-column:1 / -1;grid-row:2;font-size:1.2rem;padding-top:8px}
+ .meeting-content {grid-column:1 / -1;grid-row:2;padding-top:8px}
+ .meeting-content h3 {font-size:1.2rem}
  .marble-banner {padding:32px 20px 30px}
  .marble-banner img {width:min(240px,100%)}
  .registry-seal {width:64px;top:-14px;right:6px}
