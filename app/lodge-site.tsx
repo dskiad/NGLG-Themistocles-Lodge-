@@ -64,7 +64,10 @@ export default function LodgeSite({initialContent}: {initialContent:LodgeContent
         </section>
 
         <section className="marble-banner" aria-labelledby="marble-caption">
-          <img src="/images/marble-emblem.png" alt="Το έμβλημα της Στοάς Θεμιστοκλής σκαλισμένο σε μάρμαρο" width="1141" height="928" loading="lazy"/>
+          <div className="marble-row">
+            <img src="/images/marble-emblem.png" alt="Το έμβλημα της Στοάς Θεμιστοκλής σκαλισμένο σε μάρμαρο" width="1141" height="928" loading="lazy"/>
+            <img src="/images/marble-emblem-2.png" alt="Το έμβλημα της Στοάς Θεμιστοκλής σκαλισμένο σε μάρμαρο, δεύτερη απόδοση" width="1141" height="928" loading="lazy"/>
+          </div>
           <p id="marble-caption" className="marble-caption">Το έμβλημα της Στοάς, αποτυπωμένο σε μάρμαρο</p>
         </section>
 
@@ -78,7 +81,7 @@ export default function LodgeSite({initialContent}: {initialContent:LodgeContent
           <div className="section-wrap">
             <div className="section-heading"><div><span className="section-kicker dark-kicker">{content.season}</span><h2 id="meetings-heading">{content.scheduleTitle}</h2></div><CalendarDays size={36} strokeWidth={1}/></div>
             <p className="venue-line"><MapPin size={17}/><span>{content.venueIntro} <strong>{content.venue}</strong></span></p>
-            <div className="schedule-list">{events.length ? eventGroups.map(group=><div className="month-group" key={group.key}><p className="month-heading">{group.label}</p>{group.items.map(event=>{const date=eventParts(event.date); const ceremony=/μύηση/i.test(event.title); eventIndex++; return <article className={`meeting-row ${ceremony?"ceremony":""}`} key={event.id}><time dateTime={event.date} className="meeting-date"><span className="date-day">{date.day}</span><span className="date-month">{date.month}<span>{date.year}</span></span></time><span className="meeting-weekday">{date.weekday}</span><div className="meeting-content"><h3>{event.title}</h3>{event.image&&<img className="meeting-image" src={event.image} alt="" loading="lazy"/>}{event.link&&<a className="meeting-link" href={event.link} target="_blank" rel="noopener noreferrer">Περισσότερα<ArrowUpRight size={14}/></a>}</div><span className="meeting-index" aria-hidden="true">{String(eventIndex).padStart(2,"0")}</span></article>})}</div>) : <p className="empty-note">Δεν έχουν προστεθεί ημερομηνίες εργασιών.</p>}</div>
+            <div className="schedule-list">{events.length ? eventGroups.map(group=><div className="month-group" key={group.key}><p className="month-heading">{group.label}</p>{group.items.map(event=>{const date=eventParts(event.date); const ceremony=/μύηση|τελετή|εγκατάσταση/i.test(event.title); eventIndex++; return <article className={`meeting-row ${ceremony?"ceremony":""}`} key={event.id}><time dateTime={event.date} className="meeting-date"><span className="date-day">{date.day}</span><span className="date-month">{date.month}<span>{date.year}</span></span></time><span className="meeting-weekday">{date.weekday}</span><div className="meeting-content"><h3>{event.title}</h3>{event.image&&<img className="meeting-image" src={event.image} alt="" loading="lazy"/>}{event.link&&<a className="meeting-link" href={event.link} target="_blank" rel="noopener noreferrer">Περισσότερα<ArrowUpRight size={14}/></a>}</div><span className="meeting-index" aria-hidden="true">{String(eventIndex).padStart(2,"0")}</span></article>})}</div>) : <p className="empty-note">Δεν έχουν προστεθεί ημερομηνίες εργασιών.</p>}</div>
           </div>
         </section>
 
