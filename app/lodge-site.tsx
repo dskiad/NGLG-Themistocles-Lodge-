@@ -65,8 +65,8 @@ export default function LodgeSite({initialContent}: {initialContent:LodgeContent
 
         <section className="marble-banner" aria-labelledby="marble-caption">
           <div className="marble-row">
-            <img src="/images/marble-emblem.png" alt="Το έμβλημα της Στοάς Θεμιστοκλής σκαλισμένο σε μάρμαρο" width="1141" height="928" loading="lazy"/>
-            <img src="/images/marble-emblem-2.png" alt="Το έμβλημα της Στοάς Θεμιστοκλής σκαλισμένο σε μάρμαρο, δεύτερη απόδοση" width="1141" height="928" loading="lazy"/>
+            <img src="/images/marble-emblem.png" alt="Το έμβλημα της Στοάς Θεμιστοκλής σκαλισμένο σε μάρμαρο" width="300" height="300" loading="lazy"/>
+            <img src="/images/marble-emblem-2.png" alt="Το έμβλημα της Στοάς Θεμιστοκλής σκαλισμένο σε μάρμαρο, δεύτερη απόδοση" width="300" height="300" loading="lazy"/>
           </div>
           <p id="marble-caption" className="marble-caption">Το έμβλημα της Στοάς, αποτυπωμένο σε μάρμαρο</p>
         </section>

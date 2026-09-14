@@ -73,7 +73,7 @@ img {display:block;max-width:100%}
 .hero-baseline {position:absolute;bottom:45px;left:70px;right:70px;display:flex;justify-content:space-between;text-transform:uppercase;letter-spacing:.3em;color:#bcaa86;font-size:.75rem}
 .marble-banner {position:relative;text-align:center;padding:44px 40px 40px;background:radial-gradient(ellipse at 50% 0%,#1e405c40,transparent 70%),#081627;border-bottom:1px solid #d8ba7830}
 .marble-row {display:flex;flex-wrap:wrap;justify-content:center;gap:28px}
-.marble-banner img {width:min(300px,100%);border:1px solid #d8ba7860;box-shadow:0 20px 55px #0007}
+.marble-banner img {width:min(300px,100%);aspect-ratio:1/1;object-fit:cover;border:1px solid #d8ba7860;box-shadow:0 20px 55px #0007}
 .marble-caption {margin-top:18px;font-family:var(--serif);font-style:italic;font-size:.9375rem;color:#c9b98a}
 .past-section {position:relative}
 .registry-seal {position:absolute;top:-22px;right:14px;width:96px;height:auto;pointer-events:none;user-select:none;transform:rotate(-8deg);filter:drop-shadow(0 12px 20px #0009);z-index:1}

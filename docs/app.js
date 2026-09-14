@@ -63,7 +63,7 @@ function renderPage(data) {
     </section>
 
     <section class="marble-banner" aria-labelledby="marble-caption">
-      <div class="marble-row">${(data.marbleImages || []).map(src => `<img src="${attr(src)}" alt="${attr(data.marbleCaption || "")}" width="1141" height="928" loading="lazy">`).join("")}</div>
+      <div class="marble-row">${(data.marbleImages || []).map(src => `<img src="${attr(src)}" alt="${attr(data.marbleCaption || "")}" width="300" height="300" loading="lazy">`).join("")}</div>
       <p id="marble-caption" class="marble-caption">${esc(data.marbleCaption)}</p>
     </section>
 

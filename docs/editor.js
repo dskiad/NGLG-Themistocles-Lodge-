@@ -5,8 +5,12 @@
 // Pages deploy workflow so the public page (app.js) picks up the change.
 const OWNER = "dskiad", REPO = "NGLG-Themistocles-Lodge-", PATH = "docs/data/content.json", BRANCH = "main";
 const TOKEN_KEY = "nglg96-editor-token";
+const PASSCODE = "stoa26$";
+const UNLOCK_KEY = "nglg96-editor-unlocked";
 const app = document.getElementById("app");
 
+let unlocked = sessionStorage.getItem(UNLOCK_KEY) === "1";
+let accessDenied = false;
 let token = localStorage.getItem(TOKEN_KEY) || "";
 let content = null, draft = null, sha = null;
 let status = "loading"; // loading | error | ready
@@ -100,6 +104,21 @@ function tokenPanel() {
 }
 
 function render() {
+  if (!unlocked) {
+    app.innerHTML = `
+      <div class="editor-page-head"><h1>Επεξεργασία σελίδας</h1><p>Αυτή η σελίδα απαιτεί κωδικό πρόσβασης.</p></div>
+      <div class="token-panel">
+        <div class="token-row">
+          <input id="passcode-input" type="password" placeholder="Κωδικός πρόσβασης" autocomplete="off">
+          <button class="gold-button" type="button" data-action="unlock">Είσοδος</button>
+        </div>
+        ${accessDenied ? `<p class="save-status error">Δεν έχετε πρόσβαση σε αυτή τη σελίδα.</p>` : ""}
+      </div>`;
+    const input = document.getElementById("passcode-input");
+    input.focus();
+    input.addEventListener("keydown", e => { if (e.key === "Enter") document.querySelector('[data-action="unlock"]').click(); });
+    return;
+  }
   if (status === "loading") { app.innerHTML = `<div class="editor-page-head"><h1>Επεξεργασία σελίδας</h1><p>Φόρτωση περιεχομένου από το GitHub…</p></div>${tokenPanel()}`; return; }
   if (status === "error") {
     app.innerHTML = `<div class="editor-page-head"><h1>Επεξεργασία σελίδας</h1></div>${tokenPanel()}<div class="editor-scroll" style="padding:24px 26px"><p class="save-status error">${esc(errorMessage)}</p><button class="gold-button" type="button" data-action="retry">Δοκιμή ξανά</button></div>`;
@@ -156,7 +175,7 @@ function newPast() { return { id: uid(), title: "", firstName: "", lastName: "" 
 
 app.addEventListener("input", e => {
   const el = e.target;
-  if (el.id === "token-input") return;
+  if (el.id === "token-input" || el.id === "passcode-input") return;
   if (el.dataset.field) { draft[el.dataset.field] = el.value; }
   else if (el.dataset.group && el.dataset.index !== undefined) {
     const g = el.dataset.group, i = +el.dataset.index, k = el.dataset.key;
@@ -174,6 +193,12 @@ app.addEventListener("click", e => {
   const btn = e.target.closest("[data-action]");
   if (!btn) return;
   const action = btn.dataset.action;
+  if (action === "unlock") {
+    const value = document.getElementById("passcode-input").value;
+    if (value === PASSCODE) { unlocked = true; accessDenied = false; sessionStorage.setItem(UNLOCK_KEY, "1"); return load(); }
+    accessDenied = true;
+    return render();
+  }
   if (action === "retry") return load();
   if (action === "save-token") {
     token = document.getElementById("token-input").value.trim();
@@ -210,4 +235,4 @@ app.addEventListener("click", e => {
 
 window.addEventListener("beforeunload", e => { if (status === "ready" && dirty()) { e.preventDefault(); e.returnValue = ""; } });
 
-load();
+if (unlocked) load(); else render();
