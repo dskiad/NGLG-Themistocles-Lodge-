@@ -102,6 +102,8 @@ img {display:block;max-width:100%}
 .venue-line {display:flex;align-items:center;gap:9px;font-size:1rem;color:#53606a;margin-bottom:32px}
 .venue-line strong {font-weight:500;color:#20374a}
 .schedule-list {border-top:1px solid #a1875666}
+.month-group:not(:first-child) {margin-top:6px}
+.month-heading {padding:18px 12px 4px;font-size:.8125rem;font-weight:700;letter-spacing:.08em;color:#8a6e3c;text-transform:uppercase}
 .meeting-row {display:grid;grid-template-columns:205px 100px minmax(0,1fr) 30px;align-items:center;gap:20px;min-height:90px;border-bottom:1px solid #a68d633b;padding:14px 12px;transition:background .2s}
 .meeting-row:hover {background:#d8ba7810}
 .meeting-date {display:flex;align-items:center;gap:18px;min-width:0}

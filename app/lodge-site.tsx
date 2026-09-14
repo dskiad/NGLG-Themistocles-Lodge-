@@ -27,7 +27,15 @@ export default function LodgeSite({initialContent}: {initialContent:LodgeContent
   }
   useEffect(() => {loadContent();},[]);
   useEffect(() => {document.title = `${content.lodgeType} ${content.lodgeName} ${content.lodgeNumber} | ${content.grandTitle}`;},[content.lodgeType,content.lodgeName,content.lodgeNumber,content.grandTitle]);
-  const events = [...content.events].sort((a,b)=>a.date.localeCompare(b.date));
+  const events = [...content.events].sort((a,b)=>b.date.localeCompare(a.date));
+  const eventGroups: {key:string; label:string; items:typeof events}[] = [];
+  for (const event of events) {
+    const key = event.date.slice(0,7);
+    const group = eventGroups.find(g=>g.key===key);
+    if (group) group.items.push(event);
+    else eventGroups.push({key, label:`${eventParts(event.date).month} ${eventParts(event.date).year}`, items:[event]});
+  }
+  let eventIndex = 0;
   return <>
     <a className="skip-link" href="#main">Μετάβαση στο περιεχόμενο</a>
     <div className="site-shell">
@@ -70,7 +78,7 @@ export default function LodgeSite({initialContent}: {initialContent:LodgeContent
           <div className="section-wrap">
             <div className="section-heading"><div><span className="section-kicker dark-kicker">{content.season}</span><h2 id="meetings-heading">{content.scheduleTitle}</h2></div><CalendarDays size={36} strokeWidth={1}/></div>
             <p className="venue-line"><MapPin size={17}/><span>{content.venueIntro} <strong>{content.venue}</strong></span></p>
-            <div className="schedule-list">{events.length ? events.map((event,i)=>{const date=eventParts(event.date); const ceremony=event.title!=="Ομιλία";return <article className={`meeting-row ${ceremony?"ceremony":""}`} key={event.id}><time dateTime={event.date} className="meeting-date"><span className="date-day">{date.day}</span><span className="date-month">{date.month}<span>{date.year}</span></span></time><span className="meeting-weekday">{date.weekday}</span><h3>{event.title}</h3><span className="meeting-index" aria-hidden="true">{String(i+1).padStart(2,"0")}</span></article>}) : <p className="empty-note">Δεν έχουν προστεθεί ημερομηνίες εργασιών.</p>}</div>
+            <div className="schedule-list">{events.length ? eventGroups.map(group=><div className="month-group" key={group.key}><p className="month-heading">{group.label}</p>{group.items.map(event=>{const date=eventParts(event.date); const ceremony=/μύηση/i.test(event.title); eventIndex++; return <article className={`meeting-row ${ceremony?"ceremony":""}`} key={event.id}><time dateTime={event.date} className="meeting-date"><span className="date-day">{date.day}</span><span className="date-month">{date.month}<span>{date.year}</span></span></time><span className="meeting-weekday">{date.weekday}</span><h3>{event.title}</h3><span className="meeting-index" aria-hidden="true">{String(eventIndex).padStart(2,"0")}</span></article>})}</div>) : <p className="empty-note">Δεν έχουν προστεθεί ημερομηνίες εργασιών.</p>}</div>
           </div>
         </section>
 
