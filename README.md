@@ -8,9 +8,14 @@ Content is stored in the Sites-managed D1 database. Writes require platform auth
 
 The three lodge and grand-lodge assets were supplied by the user. The Themistocles bust photograph is by Sailko, CC BY 3.0, from Wikimedia Commons. The original photo is retained and CSS applies the watermark colour and opacity. The source and licence are linked in the footer.
 
-## GitHub Pages preview
+## GitHub Pages: a second, independent copy of the site
 
-`docs/` holds a static, hand-authored snapshot of the public page (no editor, no live content API — content is hardcoded from `lib/content.ts`'s `initialContent`). It's deployed to GitHub Pages by `.github/workflows/pages.yml` on every push to `main` that touches `docs/`. It exists purely so the design is viewable at a public URL; the actual editable site runs on the Sites platform as described above.
+`docs/` is a self-contained, GitHub-only copy of the site — separate from the app above (which runs on the Sites platform) and from its D1 database. It has two live pages once GitHub Pages is enabled for this repo:
+
+- **`docs/index.html`** — the public page. It fetches `docs/data/content.json` at load time and renders it client-side (`docs/app.js`), mirroring `app/lodge-site.tsx`'s markup and CSS classes so `docs/styles.css` (a trimmed copy of `app/globals.css`) applies unchanged.
+- **`docs/editor.html`** — an editor for that same JSON file (`docs/editor.js`). It has no server of its own: it reads and writes `docs/data/content.json` straight through the GitHub REST API, authenticated with a personal access token pasted in by the owner and kept only in that browser's `localStorage`. Saving commits directly to `main`, which re-triggers the Pages deploy below, so the public page picks up the change once the new deploy finishes (well under a minute). Use a fine-grained token scoped to just this repository with "Contents: read and write" permission.
+
+Both pages are deployed by `.github/workflows/pages.yml` on every push to `main` that touches `docs/**`. This whole `docs/` setup is independent of the Sites-hosted app and its database — the two are not kept in sync automatically.
 
 ## Validation
 
